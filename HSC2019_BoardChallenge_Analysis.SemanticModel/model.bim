@@ -1,0 +1,421 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"All Measures\",\"Grade Counter\",\"Data\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.136.1202.0 (24.09)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "All Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Grades",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7f17107c-fc7c-44c4-a534-fddf99bc9c4b",
+            "sourceColumn": "Grades",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ec15524d-8454-4d6d-94c4-c082aa2a77e0",
+        "measures": [
+          {
+            "name": "Total Change",
+            "expression": "COUNTROWS('Data')",
+            "formatString": "0",
+            "lineageTag": "a3a7f84a-094f-42fc-94b9-85f402054e63"
+          },
+          {
+            "name": "Total Fail Count",
+            "expression": "CALCULATE([Total Change], FILTER(Data, Data[Previous GP] = \"F\"))",
+            "formatString": "0",
+            "lineageTag": "ba643142-bf78-4590-8123-c2785c4f442b"
+          },
+          {
+            "name": "% Golden",
+            "expression": "DIVIDE([Golden Count], [Total Change], 0)",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "a36c14b4-52b4-4ba6-9e3c-9ac781c715e8"
+          },
+          {
+            "name": "Total Fail Conversion",
+            "expression": "CALCULATE([Total Change], FILTER(Data, Data[Fail Conversion] = TRUE()))",
+            "formatString": "0",
+            "lineageTag": "30a666c0-3d08-44f4-bca1-77bcfa5e4d67"
+          },
+          {
+            "name": "Golden Count",
+            "expression": [
+              "CALCULATE([Total Change],",
+              "FILTER(Data, Data[Previous GPA]=5 && Data[Current GPA]=5))"
+            ],
+            "formatString": "0",
+            "lineageTag": "fb3f0f81-ed5f-43f6-8537-6f8005b656ee"
+          },
+          {
+            "name": "% Fail",
+            "expression": "DIVIDE([Total Fail Count], [Total Change], 0)",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "e8ecbb8f-3ac9-415c-b9ec-f06d3a9229d4"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "All Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WctRWitUBUhBSF0w5gUlnMOkCJt2UYmMB\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Column1\", \"Grades\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Grade Counter",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Grade Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e511658e-9722-4680-8575-1eaeb2d7cebf",
+            "sourceColumn": "Grade Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Grade",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "619a9ff1-7562-4bdf-bc36-b594fc69684b",
+            "sortByColumn": "Sorted Order",
+            "sourceColumn": "Grade",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0d0a0012-5c3e-4610-9c91-278589d757c0",
+            "sortByColumn": "Grade Type",
+            "sourceColumn": "Count",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Sorted Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9e4c7a6e-4685-47c2-abf0-e3a48958358e",
+            "sourceColumn": "Sorted Order",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "39aa30d1-6792-4025-b201-a142f575fddb",
+        "partitions": [
+          {
+            "name": "Grade Counter",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"F:\\03. Python Programming\\09 Data Analysis\\DataVisualization\\PowerBI\\20241031_PBIV03_BoardChallengeResultChange\\HSC_changed_result19.xlsx\"), null, true),",
+                "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Sl No\", Int64.Type}, {\"C Code\", Int64.Type}, {\"Roll No\", Int64.Type}, {\"Subject Name\", type text}, {\"Previous GP\", type text}, {\"Current GP\", type text}, {\"Previous GPA\", type number}, {\"Current GPA\", type number}, {\"Groups\", type text}, {\"Fail Coversion\", type logical}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Fail Coversion\", \"Fail Conversion\"}}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Renamed Columns\",{\"Previous GP\", \"Current GP\"}),",
+                "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Removed Other Columns\", {}, \"Attribute\", \"Value\"),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Unpivoted Columns\",{{\"Attribute\", \"Grade Type\"}, {\"Value\", \"Grade\"}}),",
+                "    #\"Grouped Rows\" = Table.Group(#\"Renamed Columns1\", {\"Grade Type\", \"Grade\"}, {{\"Count\", each Table.RowCount(_), Int64.Type}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Grouped Rows\", \"Sorted Order\", each if [Grade] = \"A+\" then 1 else if [Grade] = \"A\" then 2 else if [Grade] = \"A-\" then 3 else if [Grade] = \"B\" then 4 else if [Grade] = \"C\" then 5 else if [Grade] = \"D\" then 6 else 7)",
+                "in",
+                "    #\"Added Conditional Column\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Data",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Sl No",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9cba2ff6-d797-428c-8fa7-0efe42f01d72",
+            "sourceColumn": "Sl No",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "C Code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "bcfe0958-2dda-458a-aeb4-d3cdb6953dab",
+            "sourceColumn": "C Code",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Roll No",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d8a46774-b368-4c5a-853f-50876ba0c840",
+            "sourceColumn": "Roll No",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Subject Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0dc70157-fb95-4337-bb3c-8990f53cc7b6",
+            "sourceColumn": "Subject Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Previous GP",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aba07d33-7fa7-449a-a2fe-9ef38fde87c1",
+            "sourceColumn": "Previous GP",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Current GP",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f3ebb11a-729d-405f-8ffc-9d489de9c018",
+            "sourceColumn": "Current GP",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Previous GPA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c6ccc2ed-4647-4139-beda-cb8fce0430a8",
+            "sourceColumn": "Previous GPA",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Current GPA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "42c4c417-295c-4382-b280-8a29b3d3aad7",
+            "sourceColumn": "Current GPA",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Groups",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3589d082-0d6c-4ed1-b41d-a1f0a8499fae",
+            "sourceColumn": "Groups",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fail Conversion",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "013767be-0448-42ba-948a-82e9b3cb5c9c",
+            "sourceColumn": "Fail Conversion",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "51cc999a-12f8-4618-a44e-93bb81f7e06f",
+        "partitions": [
+          {
+            "name": "Data",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"F:\\03. Python Programming\\09 Data Analysis\\DataVisualization\\PowerBI\\20241031_PBIV03_BoardChallengeResultChange\\HSC_changed_result19.xlsx\"), null, true),",
+                "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Sl No\", Int64.Type}, {\"C Code\", Int64.Type}, {\"Roll No\", Int64.Type}, {\"Subject Name\", type text}, {\"Previous GP\", type text}, {\"Current GP\", type text}, {\"Previous GPA\", type number}, {\"Current GPA\", type number}, {\"Groups\", type text}, {\"Fail Coversion\", type logical}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Fail Coversion\", \"Fail Conversion\"}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Renamed Columns\", \"Turned Into Golden\", each if [Previous GPA] = [Current GPA] then \"Golden\" else \"Not Golden\"),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Added Conditional Column\",{\"Turned Into Golden\", \"Column11\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
