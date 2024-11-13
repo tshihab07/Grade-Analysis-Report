@@ -27,7 +27,7 @@ The dashboard includes several key insights and visualizations:
 **Achieved Golden:** A donut chart showing the percentage of students who achieved a Golden GPA after rescrutiny.
 **Previous and Current Grades Table:** A table comparing the count of students in each grade before and after rescrutiny.
 
-## Key Metrics
+## Key
 
 **Total Changed Results:** 1586
 **Fail to Pass Percentage:** 23.71%
