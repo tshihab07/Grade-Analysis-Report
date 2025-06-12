@@ -1,4 +1,4 @@
-# HSC Exam Rescrutiny Result Analysis - 2019
+# HSC 2019 Exam Rescrutiny Result Analysis of Bangladesh
 This project provides an analytical dashboard to visualize the rescrutiny results of the HSC (Higher Secondary Certificate) Exam in 2019 of Bangladesh. The dashboard highlights various aspects of result changes post-rescrutiny, including grade distributions, subject-wise result changes, fail-to-pass conversions, and more
 
 ## Table of Contents
@@ -18,10 +18,10 @@ This project provides an analytical dashboard to visualize the rescrutiny result
 The dashboard includes several key insights and visualizations:
 
 **Total Changed Results:** Displays the total number of changed results after rescrutiny.
-**Groupwise Conversion:** A pie chart showing the distribution of result changes across different academic groups (Science, Business Studies, Arts and Compulsory).
+**Groupwise Conversion:** A pie chart showing the distribution of result changes across different academic groups (Science, Business Studies, Arts, and Compulsory).
 **Grade Comparison:** A bar chart comparing the current and previous grades
 **Fail Conversions:** A bar chart illustrating the specific changes from fail grades (F) to passing grades.
-**Gradewise Conversion:** A pie chart showing the percentage breakdown of grade changes across different grades.
+**Grade-wise Conversion:** A pie chart showing the percentage breakdown of grade changes across different grades.
 **Subject-wise Result Change:** A bar chart displaying the number of result changes per subject.
 **Fail to Pass:** A donut chart indicating the percentage of students who moved from a failing grade to a passing grade.
 **Achieved Golden:** A donut chart showing the percentage of students who achieved a Golden GPA after rescrutiny.
