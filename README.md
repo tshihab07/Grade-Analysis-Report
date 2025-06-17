@@ -80,3 +80,10 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgments
 
 Special thanks to the Education Board for providing the rescrutiny data and to all contributors to this project.
+
+
+## Contact
+
+E-mail: tushar.shihab13@gmail.com <br>
+More Projects: 👉🏿 [Projects](https://github.com/tshihab07?tab=repositories)<br>
+Linkedin: [Tushar Shihab](https://www.linkedin.com/in/tshihab07/)
